@@ -1,20 +1,11 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package passwordgeneratorthing;
-
-/**
- *
- * @author Chris
- */
 public class GeneratorGUI extends javax.swing.JDialog{
-  /**
-   * Creates new form GeneratorGUI
-   */
+  Generator gen = null;
+  
   public GeneratorGUI(java.awt.Frame parent, boolean modal){
     super(parent, modal);
     initComponents();
+    this.gen = new Generator(10);
   }
 
   /**
@@ -30,6 +21,7 @@ public class GeneratorGUI extends javax.swing.JDialog{
     passwordLabel = new javax.swing.JLabel();
     passwordField = new javax.swing.JTextField();
     lengthField = new javax.swing.JTextField();
+    generateButton = new javax.swing.JButton();
 
     setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -40,9 +32,31 @@ public class GeneratorGUI extends javax.swing.JDialog{
     passwordLabel.setText("Password");
 
     passwordField.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+    passwordField.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        passwordFieldActionPerformed(evt);
+      }
+    });
 
     lengthField.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
     lengthField.setText("10");
+    lengthField.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        lengthFieldActionPerformed(evt);
+      }
+    });
+    lengthField.addFocusListener(new java.awt.event.FocusAdapter() {
+      public void focusLost(java.awt.event.FocusEvent evt) {
+        lengthFieldFocusLost(evt);
+      }
+    });
+
+    generateButton.setText("Generate");
+    generateButton.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        generateButtonActionPerformed(evt);
+      }
+    });
 
     javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
     getContentPane().setLayout(layout);
@@ -55,14 +69,15 @@ public class GeneratorGUI extends javax.swing.JDialog{
           .addComponent(lengthLabel))
         .addGap(18, 18, 18)
         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+          .addComponent(generateButton)
           .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
           .addComponent(lengthField, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-        .addContainerGap(25, Short.MAX_VALUE))
+        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
     );
     layout.setVerticalGroup(
       layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGroup(layout.createSequentialGroup()
-        .addGap(86, 86, 86)
+        .addContainerGap()
         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
           .addComponent(lengthLabel)
           .addComponent(lengthField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -70,15 +85,30 @@ public class GeneratorGUI extends javax.swing.JDialog{
         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
           .addComponent(passwordLabel)
           .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        .addGap(18, 18, 18)
+        .addComponent(generateButton)
         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
     );
 
     pack();
   }// </editor-fold>//GEN-END:initComponents
 
-  /**
-   * @param args the command line arguments
-   */
+  private void generateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generateButtonActionPerformed
+    // TODO add your handling code here:
+  }//GEN-LAST:event_generateButtonActionPerformed
+
+  private void passwordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordFieldActionPerformed
+    this.generateButtonActionPerformed(evt);
+  }//GEN-LAST:event_passwordFieldActionPerformed
+
+  private void lengthFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lengthFieldActionPerformed
+    this.passwordField.grabFocus();
+  }//GEN-LAST:event_lengthFieldActionPerformed
+
+  private void lengthFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_lengthFieldFocusLost
+    this.gen.length = Integer.parseInt(this.lengthField.getText());
+  }//GEN-LAST:event_lengthFieldFocusLost
+
   public static void main(String args[]){
     /* Set the Nimbus look and feel */
     //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -118,6 +148,7 @@ public class GeneratorGUI extends javax.swing.JDialog{
     });
   }
   // Variables declaration - do not modify//GEN-BEGIN:variables
+  private javax.swing.JButton generateButton;
   private javax.swing.JTextField lengthField;
   private javax.swing.JLabel lengthLabel;
   private javax.swing.JTextField passwordField;
