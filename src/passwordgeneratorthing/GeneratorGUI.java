@@ -94,7 +94,7 @@ public class GeneratorGUI extends javax.swing.JDialog{
   }// </editor-fold>//GEN-END:initComponents
 
   private void generateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generateButtonActionPerformed
-    // TODO add your handling code here:
+    this.passwordField.setText(this.gen.generate());
   }//GEN-LAST:event_generateButtonActionPerformed
 
   private void passwordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordFieldActionPerformed
