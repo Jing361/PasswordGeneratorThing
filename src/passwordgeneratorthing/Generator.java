@@ -14,6 +14,12 @@ public class Generator{
   }
   
   public String generate(){
-    return new BigInteger(this.length*5, this.rn).toString(32);
+    int numChars = 36;
+    return new BigInteger((int)(this.length * (Generator.log(numChars, 2))), this.rn).toString(numChars);
+  }
+  
+  static double log(int x, int base)
+  {
+    return (Math.log(x) / Math.log(base));
   }
 }
